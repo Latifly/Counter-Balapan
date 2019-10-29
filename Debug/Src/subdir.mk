@@ -4,6 +4,8 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Src/LCD.c \
+../Src/ShiftRegister.c \
 ../Src/main.c \
 ../Src/stm32f1xx_hal_msp.c \
 ../Src/stm32f1xx_it.c \
@@ -11,6 +13,8 @@ C_SRCS += \
 ../Src/system_stm32f1xx.c 
 
 OBJS += \
+./Src/LCD.o \
+./Src/ShiftRegister.o \
 ./Src/main.o \
 ./Src/stm32f1xx_hal_msp.o \
 ./Src/stm32f1xx_it.o \
@@ -18,6 +22,8 @@ OBJS += \
 ./Src/system_stm32f1xx.o 
 
 C_DEPS += \
+./Src/LCD.d \
+./Src/ShiftRegister.d \
 ./Src/main.d \
 ./Src/stm32f1xx_hal_msp.d \
 ./Src/stm32f1xx_it.d \
