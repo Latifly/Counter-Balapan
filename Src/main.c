@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "LCD.h"
 #include "ShiftRegister.h"
+#include "task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -123,15 +124,13 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-	  shift_data(0xF9);
-	  HAL_GPIO_WritePin(SEG_ENA1_GPIO_Port,SEG_ENA1_Pin,GPIO_PIN_SET);
-	  HAL_Delay(1);
-	  HAL_GPIO_WritePin(SEG_ENA1_GPIO_Port,SEG_ENA1_Pin,GPIO_PIN_RESET);
-
-	  shift_data(0x54);
-	  HAL_GPIO_WritePin(SEG_ENA2_GPIO_Port,SEG_ENA2_Pin,GPIO_PIN_SET);
-	  HAL_Delay(1);
-	  HAL_GPIO_WritePin(SEG_ENA2_GPIO_Port,SEG_ENA2_Pin,GPIO_PIN_RESET);
+		LCD_Clear();
+		LCD_SetCursor(0,0);
+		LCD_PrintNum(minute);
+		LCD_Print(":");
+		LCD_PrintNum(sec);
+		LCD_Print(":");
+		LCD_PrintNum(milisec);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -326,7 +325,8 @@ static void MX_TIM4_Init(void)
 
   /* USER CODE BEGIN TIM4_Init 0 */
 
-  /* USER CODE END TIM4_Init 0 */
+  /* USER CODE END TIM4_Init 0
+   *  */
 
   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
@@ -337,7 +337,7 @@ static void MX_TIM4_Init(void)
   htim4.Instance = TIM4;
   htim4.Init.Prescaler = 35999;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 200;
+  htim4.Init.Period = 20-1;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim4) != HAL_OK)

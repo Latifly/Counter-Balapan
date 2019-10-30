@@ -25,7 +25,8 @@ Src/stm32f1xx_it.o: ../Src/stm32f1xx_it.c \
  C:/Users/Alatif/Documents/stm32/Counter-balapan/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  C:/Users/Alatif/Documents/stm32/Counter-balapan/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  C:/Users/Alatif/Documents/stm32/Counter-balapan/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
- C:/Users/Alatif/Documents/stm32/Counter-balapan/Inc/stm32f1xx_it.h
+ C:/Users/Alatif/Documents/stm32/Counter-balapan/Inc/stm32f1xx_it.h \
+ C:/Users/Alatif/Documents/stm32/Counter-balapan/Inc/task.h
 
 C:/Users/Alatif/Documents/stm32/Counter-balapan/Inc/main.h:
 
@@ -80,3 +81,5 @@ C:/Users/Alatif/Documents/stm32/Counter-balapan/Drivers/STM32F1xx_HAL_Driver/Inc
 C:/Users/Alatif/Documents/stm32/Counter-balapan/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 
 C:/Users/Alatif/Documents/stm32/Counter-balapan/Inc/stm32f1xx_it.h:
+
+C:/Users/Alatif/Documents/stm32/Counter-balapan/Inc/task.h:

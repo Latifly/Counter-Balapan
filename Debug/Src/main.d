@@ -26,7 +26,8 @@ Src/main.o: ../Src/main.c \
  C:/Users/Alatif/Documents/stm32/Counter-balapan/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  C:/Users/Alatif/Documents/stm32/Counter-balapan/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Src/LCD.h \
- C:/Users/Alatif/Documents/stm32/Counter-balapan/Inc/ShiftRegister.h
+ C:/Users/Alatif/Documents/stm32/Counter-balapan/Inc/ShiftRegister.h \
+ C:/Users/Alatif/Documents/stm32/Counter-balapan/Inc/task.h
 
 C:/Users/Alatif/Documents/stm32/Counter-balapan/Inc/main.h:
 
@@ -83,3 +84,5 @@ C:/Users/Alatif/Documents/stm32/Counter-balapan/Drivers/STM32F1xx_HAL_Driver/Inc
 ../Src/LCD.h:
 
 C:/Users/Alatif/Documents/stm32/Counter-balapan/Inc/ShiftRegister.h:
+
+C:/Users/Alatif/Documents/stm32/Counter-balapan/Inc/task.h:
