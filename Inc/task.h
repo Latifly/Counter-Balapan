@@ -16,7 +16,7 @@ void display_utama(void);
 
 
 uint8_t milisec, sec, minute;
-uint8_t start;
+uint8_t stopwatchEnable;
 
 
 
