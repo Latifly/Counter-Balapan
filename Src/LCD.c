@@ -24,7 +24,6 @@ void LCD_Send(_Bool mode, uint8_t data){
 		LCD_RS(1);
 	}
 	else {LCD_RS(0);}
-
 	LCD_Write4bit(data>>4);
 	LCD_EN();
 	LCD_Write4bit(data);
