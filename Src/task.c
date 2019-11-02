@@ -20,7 +20,6 @@ uint8_t lap1=0, lap2=0, lap3=0;
 
 
 
-
 void task1_run(void){
 
 	if(sensor[0]>=batas[0]+100 || sensor[0]<=batas[0]-100 ){ //sensor detect
