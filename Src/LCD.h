@@ -14,9 +14,9 @@
 #include "main.h"
 
 #define LCD_EN() 			{	HAL_GPIO_WritePin(LCD_EN_GPIO_Port,LCD_EN_Pin,GPIO_PIN_SET);\
-								for(uint16_t i=0; i<8500; i++);\
+								HAL_Delay(1);;\
 								HAL_GPIO_WritePin(LCD_EN_GPIO_Port,LCD_EN_Pin,GPIO_PIN_RESET);\
-								for(uint16_t i=0; i<8500; i++);}
+								HAL_Delay(1);;}
 #define LCD_RW(state)		{	HAL_GPIO_WritePin(LCD_RW_GPIO_Port,LCD_RW_Pin, (state) ? GPIO_PIN_SET : GPIO_PIN_RESET);}
 #define LCD_RS(state)		{	HAL_GPIO_WritePin(LCD_RS_GPIO_Port,LCD_RS_Pin, (state) ? GPIO_PIN_SET : GPIO_PIN_RESET);}
 #define LCD_Command(data)	{	LCD_Send(0,data);}

@@ -13,6 +13,8 @@
 
 uint16_t batas[3];
 uint8_t bouncing[3]={0xFF,0xFF,0xFF};
+uint8_t button=0xFF;
+uint8_t stopwatchEnable;
 uint16_t timeoutCount[3];
 uint16_t timoutMax=1000;
 uint32_t temp;
@@ -40,14 +42,14 @@ void task1_run(void){
 		HAL_GPIO_WritePin(BUZZER_GPIO_Port,BUZZER_Pin,GPIO_PIN_RESET);
 	}
 
-	if(lap[0]==4 && bouncing[0]==0x03){ //print if finish
-		LCD_SetCursor(7,1);
-		LCD_PrintNum(minute);
-		LCD_Print(":");
-		LCD_PrintNum(sec);
-		LCD_Print(":");
-		LCD_PrintNum(milisec);
-	}
+//	if(lap[0]==4 && bouncing[0]==0x03){ //print if finish
+//		LCD_SetCursor(7,1);
+//		LCD_PrintNum(minute);
+//		LCD_Print(":");
+//		LCD_PrintNum(sec);
+//		LCD_Print(":");
+//		LCD_PrintNum(milisec);
+//	}
 
 
 	//jalur2
@@ -88,7 +90,18 @@ void task1_run(void){
 		HAL_GPIO_WritePin(BUZZER_GPIO_Port,BUZZER_Pin,GPIO_PIN_RESET);
 	}
 
+//	buttonSS
+	if(HAL_GPIO_ReadPin(Button_SS_GPIO_Port,Button_Res_Pin) == GPIO_PIN_RESET){
+		button=(button<<1);
+	}
+	else{
+		button=(button<<1)|1;
+	}
 
+	if (button==0x03){
+		timerEnable=!(timerEnable);
+
+	}
 }
 
 
@@ -111,11 +124,11 @@ void task2_run(void){ //switching 7 segment
 }
 
 void task3_run(void){ //stopwatch, timer 10ms
-	if(lap[0]==1||lap[1]==0||lap[2]){
+	if(lap[0]==1||lap[1]==1||lap[2]==1){
 	stopwatchEnable=1;
 	}
 	if(stopwatchEnable==1){
-		milisec+=10;
+		milisec++;
 		if (milisec>99){
 			milisec-=100;
 			sec++;
@@ -128,17 +141,7 @@ void task3_run(void){ //stopwatch, timer 10ms
 	else {
 		milisec=sec=minute=0;
 	}
-
-	LCD_Clear();
-	LCD_SetCursor(7,0);
-	LCD_PrintNum(minute);
-	LCD_Print(":");
-	LCD_PrintNum(sec);
-	LCD_Print(":");
-	LCD_PrintNum(milisec);
-
-
-	}
+}
 
 
 
@@ -155,13 +158,22 @@ void kalibrasi_sensor(void){
 }
 
 void display_utama(void){
-	LCD_Clear();
+//	LCD_Clear();
 	LCD_SetCursor(0,0);
 	LCD_Print("Counter Balapan");
 	LCD_SetCursor(0,1);
 	LCD_Print("3 Jalur");
 	LCD_SetCursor(0,3);
 	LCD_Print("by Lapitech");
+}
+
+void stopwatch_print(void){
+	LCD_SetCursor(7,0);
+	LCD_PrintNum(minute);
+	LCD_Print(":");
+	LCD_PrintNum(sec);
+	LCD_Print(":");
+	LCD_PrintNum(milisec);
 }
 
 //	LCD_Clear();

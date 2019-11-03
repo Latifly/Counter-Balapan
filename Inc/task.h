@@ -13,11 +13,12 @@ void task2_run(void);
 void task3_run(void);
 void kalibrasi_sensor(void);
 void display_utama(void);
+void stopwatch_print(void);
 
 
 uint8_t milisec, sec, minute;
-uint8_t stopwatchEnable;
 
+_Bool timerEnable;
 
 
 #endif /* INC_TASK_H_ */
