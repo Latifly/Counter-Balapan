@@ -14,7 +14,7 @@
 
 uint16_t batas[3];
 uint8_t bouncing[3]={0xFF,0xFF,0xFF};
-uint8_t button=0xFF;
+uint8_t button=0xFF, button1=0xFF;
 uint8_t stopwatchEnable;
 uint16_t timeoutCount[3];
 uint16_t timoutMax=1000;
@@ -36,6 +36,7 @@ void task1_run(void){
 
 	if (timeoutCount[0]>timoutMax){
 		HAL_GPIO_WritePin(BUZZER_GPIO_Port,BUZZER_Pin,GPIO_PIN_SET);
+		UART_println("Sensor jalur A error");
 	}
 
 	if (bouncing[0]==0x03 && timeoutCount[0]<timoutMax){ //counting
@@ -74,6 +75,7 @@ void task1_run(void){
 
 	if (timeoutCount[1]>timoutMax){
 		HAL_GPIO_WritePin(BUZZER_GPIO_Port,BUZZER_Pin,GPIO_PIN_SET);
+		UART_println("Sensor jalur B error");
 	}
 
 	if (bouncing[1]==0x03 && timeoutCount[1]<timoutMax){
@@ -102,6 +104,7 @@ void task1_run(void){
 
 	if (timeoutCount[2]>timoutMax){
 		HAL_GPIO_WritePin(BUZZER_GPIO_Port,BUZZER_Pin,GPIO_PIN_SET);
+		UART_println("Sensor jalur C error");
 	}
 
 	if (bouncing[2]==0x03 && timeoutCount[2]<timoutMax){
@@ -119,7 +122,7 @@ void task1_run(void){
 	}
 
 //	buttonSS
-	if(HAL_GPIO_ReadPin(Button_SS_GPIO_Port,Button_Res_Pin) == GPIO_PIN_RESET){
+	if(HAL_GPIO_ReadPin(Button_SS_GPIO_Port,Button_SS_Pin) == GPIO_PIN_RESET){
 		button=(button<<1);
 	}
 	else{
@@ -131,6 +134,23 @@ void task1_run(void){
 		if(stopwatchEnable==1){
 			stopwatchEnable=0;
 		}
+	}
+
+	//button Reset
+	if(HAL_GPIO_ReadPin(Button_Res_GPIO_Port,Button_Res_Pin) == GPIO_PIN_RESET){
+		button=(button1<<1);
+	}
+	else{
+		button=(button1<<1)|1;
+	}
+
+	if (button==0x03){
+		milisec=sec=minute=0;
+		lapA=lapB=lapC=0;
+		milisec_A=milisec_B=milisec_C;
+		sec_A=sec_B=sec_C=0;
+		minute_A=minute_B=minute_C=0;
+
 	}
 }
 
@@ -224,9 +244,9 @@ void hasil_waktu(void){
 			LCD_Print("FINISH");
 	}
 
-	// jalur A
+	// jalur B
 		LCD_SetCursor(0,2);
-		LCD_Print("A");
+		LCD_Print("B");
 		LCD_SetCursor(2,2);
 		LCD_PrintNum(lapB);
 		LCD_SetCursor(4,2);
