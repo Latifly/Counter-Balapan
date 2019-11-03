@@ -74,7 +74,7 @@ static void MX_TIM3_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 uint32_t sensor[3];
-
+_Bool timerEnable=0;
 /* USER CODE END 0 */
 
 /**
@@ -133,29 +133,34 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  	LCD_Clear();
-	  	LCD_SetCursor(3,0);
-	  	LCD_PrintNum(minute);
-	  	LCD_Print(":");
-	  	LCD_PrintNum(sec);
-	  	LCD_Print(":");
-	  	LCD_PrintNum(milisec);
+	  if(HAL_GPIO_ReadPin(Button_SS_GPIO_Port,Button_SS_Pin) == GPIO_PIN_RESET){
+		  HAL_Delay(20);
+		  if(HAL_GPIO_ReadPin(Button_SS_GPIO_Port,Button_SS_Pin==GPIO_PIN_RESET)){
+			  while(HAL_GPIO_ReadPin(Button_SS_GPIO_Port,Button_SS_Pin==GPIO_PIN_RESET));
+			  timerEnable=!(timerEnable);
 
-	  	LCD_SetCursor(0,1);
-	  	LCD_PrintNum(sensor[0]);
 
-	  	LCD_SetCursor(0,3);
-	  	LCD_PrintNum(sensor[2]);
+			  }
 
-	  	LCD_SetCursor(0,2);
-	  	LCD_PrintNum(sensor[1]);
+		  }
+	  if(timerEnable){
+		  HAL_TIM_Base_Start_IT(&htim2);
+		  HAL_TIM_Base_Start_IT(&htim3);
+		  HAL_TIM_Base_Start_IT(&htim4);
+	  }
+//	  else{
+//		  HAL_TIM_Base_Stop_IT(&htim2);
+//		  HAL_TIM_Base_Stop_IT(&htim3);
+//		  HAL_TIM_Base_Stop_IT(&htim4);
+//	  }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
+//  }
   /* USER CODE END 3 */
+  }
 }
-
 /**
   * @brief System Clock Configuration
   * @retval None
@@ -282,7 +287,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 35999;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 4-1;
+  htim2.Init.Period = 8-1;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -372,7 +377,7 @@ static void MX_TIM4_Init(void)
   htim4.Instance = TIM4;
   htim4.Init.Prescaler = 35999;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 20-1;
+  htim4.Init.Period = 200-1;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
