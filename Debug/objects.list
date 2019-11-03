@@ -22,4 +22,5 @@
 "Src/syscalls.o"
 "Src/system_stm32f1xx.o"
 "Src/task.o"
+"Src/uart.o"
 "startup/startup_stm32f103xb.o"

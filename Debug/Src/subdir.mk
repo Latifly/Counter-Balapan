@@ -12,7 +12,8 @@ C_SRCS += \
 ../Src/stm32f1xx_it.c \
 ../Src/syscalls.c \
 ../Src/system_stm32f1xx.c \
-../Src/task.c 
+../Src/task.c \
+../Src/uart.c 
 
 OBJS += \
 ./Src/LCD.o \
@@ -23,7 +24,8 @@ OBJS += \
 ./Src/stm32f1xx_it.o \
 ./Src/syscalls.o \
 ./Src/system_stm32f1xx.o \
-./Src/task.o 
+./Src/task.o \
+./Src/uart.o 
 
 C_DEPS += \
 ./Src/LCD.d \
@@ -34,7 +36,8 @@ C_DEPS += \
 ./Src/stm32f1xx_it.d \
 ./Src/syscalls.d \
 ./Src/system_stm32f1xx.d \
-./Src/task.d 
+./Src/task.d \
+./Src/uart.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

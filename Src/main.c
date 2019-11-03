@@ -133,30 +133,17 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  if(HAL_GPIO_ReadPin(Button_SS_GPIO_Port,Button_SS_Pin) == GPIO_PIN_RESET){
-//		  HAL_Delay(20);
-//		  if(HAL_GPIO_ReadPin(Button_SS_GPIO_Port,Button_SS_Pin==GPIO_PIN_RESET)){
-//			  while(HAL_GPIO_ReadPin(Button_SS_GPIO_Port,Button_SS_Pin==GPIO_PIN_RESET));
-//			  timerEnable=!(timerEnable);
-//
-//
-//			  }
-//
-//		  }
+
 	  if(timerEnable){
 		  stopwatch_print();
-//		  HAL_TIM_Base_Start_IT(&htim2);
-//		  HAL_TIM_Base_Start_IT(&htim3);
-//		  HAL_TIM_Base_Start_IT(&htim4);
-//		  LCD_Clear();
+		  hasil_waktu();
 	  }
 	  else{
 		  display_utama();
-//		  HAL_TIM_Base_Stop_IT(&htim2);
-//		  HAL_TIM_Base_Stop_IT(&htim3);
-//		  HAL_TIM_Base_Stop_IT(&htim4);
 		  LCD_Clear();
 	  }
+
+
 
     /* USER CODE END WHILE */
 
